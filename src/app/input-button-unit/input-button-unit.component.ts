@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-input-button-unit',
   template: `<p>The title is {{ title }}</p>
-    <input [value]="title" />
-    <button>Save</button>`,
+    <input [value]="title" (keyup.enter)="changeTitle($event.target.value)" />
+    <button (click)="changeTitle('Button Clicked!')">Save</button>`,
   styleUrls: ['./input-button-unit.component.scss'],
 })
 export class InputButtonUnitComponent implements OnInit {
@@ -12,9 +12,10 @@ export class InputButtonUnitComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.title = 'This is not a title you are looking for';
-    }, 3000);
+  ngOnInit(): void {}
+
+  changeTitle(newTitle: string): void {
+    this.title = newTitle;
   }
 }
+
